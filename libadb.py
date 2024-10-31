@@ -19,6 +19,10 @@ class adb(object):
                      time.time() - start, args)
         return (p.returncode, stdout, stderr)
     
+    def connect(self, addr):
+        _, stdout, _ = self.__adb(
+            ["adb", "connect", addr])
+    
     def tap(self, x, y):
         _, stdout, _ = self.__adb(
             ["adb", "-s", self.device_id, "shell", "input", "tap", x, y])
